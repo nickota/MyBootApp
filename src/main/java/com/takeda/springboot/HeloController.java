@@ -17,6 +17,7 @@ public class HeloController {
 
 	@RequestMapping("/{id}")
 	public DataObject index(@PathVariable int id) {
+		//JSON形式で出力
 		return new DataObject(id, names[id], mails[id]);
 	}
 }
