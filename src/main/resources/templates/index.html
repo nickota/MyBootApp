@@ -31,7 +31,8 @@
     <p th:text="|my name is *{name}. mail address is *{value}.|">message.</p>
     <p th:utext="${msg2}">message2.</p>
 -->
-    <p th:text="${id} + ' is ' + (${check} ? ${trueVal} : ${falseVal})"></p>
+    <p th:if="${check}" th:text="${id} + ' is ' + ${trueVal}"></p>
+    <p th:unless="${check}" th:text="${id} + ' is ' + ${falseVal}"></p>
   </div>
 </body>
 </html>
