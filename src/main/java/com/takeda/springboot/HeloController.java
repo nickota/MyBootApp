@@ -11,6 +11,7 @@ public class HeloController {
 	public ModelAndView index(ModelAndView mav) {
 		mav.setViewName("index");
 		mav.addObject("msg","current data");
+		mav.addObject("msg2","message1<hr/>message2<br>message3");
 		DataObject obj = new DataObject(123, "hanako", "hanako@flower");
 		mav.addObject("object",obj);
 		return mav;

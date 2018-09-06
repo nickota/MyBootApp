@@ -27,6 +27,7 @@
   </table>
   <div th:object="${object}">
     <p th:text="|my name is *{name}. mail address is *{value}.|">message.</p>
+    <p th:utext="${msg2}">message2.</p>
   </div>
 </body>
 </html>
