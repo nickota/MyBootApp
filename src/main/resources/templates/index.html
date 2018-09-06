@@ -14,7 +14,7 @@
 <body>
   <h1 th:text="#{content.title}">Helo page</h1>
   <p th:text="${msg}">message.</p>
-  <table th:object="${object}">
+ <!--  <table th:object="${object}">
     <tr>
       <th>ID</th><td th:text="*{id}"></td>
     </tr>
@@ -25,9 +25,13 @@
       <th>MAIL</th><td th:text="*{value}"></td>
     </tr>
   </table>
+-->
   <div th:object="${object}">
+<!--
     <p th:text="|my name is *{name}. mail address is *{value}.|">message.</p>
     <p th:utext="${msg2}">message2.</p>
+-->
+    <p th:text="${id} + ' is ' + (${check} ? ${trueVal} : ${falseVal})"></p>
   </div>
 </body>
 </html>
