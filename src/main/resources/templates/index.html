@@ -13,26 +13,18 @@
 </head>
 <body>
   <h1 th:text="#{content.title}">Helo page</h1>
-  <p th:text="${msg}">message.</p>
- <!--  <table th:object="${object}">
-    <tr>
-      <th>ID</th><td th:text="*{id}"></td>
-    </tr>
-    <tr>
-      <th>NAME</th><td th:text="*{name}"></td>
-    </tr>
-    <tr>
-      <th>MAIL</th><td th:text="*{value}"></td>
-    </tr>
+  <table>
+	<tr>
+	  <th>NAME</th>
+	  <th>MAIL</th>
+	  <th>TEL</th>
+	</tr>
+	<tr th:each="obj:${data}">
+	  <td th:text="${obj[0]}"></td>
+	  <td th:text="${obj[1]}"></td>
+	  <td th:text="${obj[2]}"></td>
+	</tr>
   </table>
--->
-<div th:switch="${check}">
-	<p th:case="0" th:text="|${month} - Winter|"></p>
-	<p th:case="1" th:text="|${month} - Spring|"></p>
-	<p th:case="2" th:text="|${month} - Autumn|"></p>
-	<p th:case="3" th:text="|${month} - Winter|"></p>
-	<p th:case="4" th:text="|${month} - Spring|"></p>
-	<p th:case="*">...?</p>
-</div>
+
 </body>
 </html>
