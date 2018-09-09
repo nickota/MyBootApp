@@ -10,13 +10,20 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller//このクラスはControllerですよ
 public class HeloController {
 
-	@RequestMapping("/")
-	public ModelAndView index(ModelAndView mav) {
+	@RequestMapping("/{num}")
+	public ModelAndView index(@PathVariable int num, ModelAndView mav) {
 		mav.setViewName("index");
-		ArrayList<String[]> data = new ArrayList<String[]>();
-		data.add(new String[]{ "taro", "taro@yamada", "090-999-999" });
-		data.add(new String[] { "hanako", "hanako@flower", "080-111-111" });
-		data.add(new String[] { "sachiko", "sachiko@happy", "080-222-111" });
+		mav.addObject("num", num);
+		if (num >= 0) {
+			mav.addObject("check", "num >= data.size() ? 0 : num");
+		} else {
+			mav.addObject("check", "num <= data.size() * -1 ? 0 : num * -1");
+		}
+		
+		ArrayList<DataObject> data = new ArrayList<DataObject>();
+		data.add(new DataObject(0, "taro", "taro@yamada"));
+		data.add(new DataObject(1, "hanako", "hanako@flower"));
+		data.add(new DataObject(2, "sachiko", "sachiko@com"));
 		mav.addObject("data", data);
 		return mav;
 	}
@@ -33,15 +40,15 @@ public class HeloController {
 		return "forward:/";
 	}
 	
-	@RequestMapping("/{month}")
-	public ModelAndView index(@PathVariable int month, ModelAndView mav) {
-		mav.setViewName("index");
-		int m = Math.abs(month) % 12;
-		m = m == 0 ? 12 : m;
-		mav.addObject("month",m);
-		mav.addObject("check", Math.floor(m / 3));
-		return mav;
-	}
+//	@RequestMapping("/{month}")
+//	public ModelAndView index(@PathVariable int month, ModelAndView mav) {
+//		mav.setViewName("index");
+//		int m = Math.abs(month) % 12;
+//		m = m == 0 ? 12 : m;
+//		mav.addObject("month",m);
+//		mav.addObject("check", Math.floor(m / 3));
+//		return mav;
+//	}
 }
 
 class DataObject {
