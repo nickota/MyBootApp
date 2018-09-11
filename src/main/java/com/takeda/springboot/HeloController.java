@@ -1,17 +1,25 @@
 package com.takeda.springboot;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.takeda.springboot.repositories.MyDataRepository;
+
 @Controller
 public class HeloController {
-
-	@RequestMapping("/{tax}")
-	public ModelAndView index(@PathVariable int tax, ModelAndView mav) {
+	//まずアプリケーションに用意されているBeanオブジェクトに関連づける
+	@Autowired
+	//自動的にインターフェイスに必要な処理が組み込まれたインスタンス化する
+	MyDataRepository repository;
+	
+	@RequestMapping("/")
+	public ModelAndView index(ModelAndView mav) {
 		mav.setViewName("index");
-		mav.addObject("tax", tax);
+		mav.addObject("msg", "this is sample content");
+		Iterable<MyData> list = repository.findAll();  //JpaRepositoryに用意されている
+		mav.addObject("data", list);
 		return mav;
 	}
 }
